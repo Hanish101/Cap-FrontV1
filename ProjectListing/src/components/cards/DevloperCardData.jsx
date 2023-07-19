@@ -49,20 +49,21 @@ export default function DevloperCardData({devData,  handleDevDetails }) {
         <div className='w-[450px] h-[250px] bg-blue-300 mt-4 ml-4 rounded-2xl' onClick={()=>handleDetailClick()}>
 
             <div className="gap-8 sm:flex">
-                <div className="w-[200px] h-[250px]">
+                <div className="h-[250px] ml-2 flex justify-center items-center rounded-full">
                     <img
+
                         src={devData.imageUrl}
-                        className="w-full h-full object-cover object-center shadow-md rounded-xl"
+                        className="w-[150px] h-[150px] rounded-full object-cover object-center shadow-md"
                         alt=""
                     />
                 </div>
-                <div className="mt-4">
+                <div className="mt-4 w-1/2">
                     <h4 className="text-lg text-gray-700 font-semibold">{devData.dev_first_name} {devData.dev_last_name}</h4>
-                    <p className="text-indigo-600">{devData.bio}</p>
+                    {/* <p className="text-indigo-600">{devData.bio}</p> */}
                     <p className="text-gray-600 mt-2">{devData.background}</p>
-                    <div className="mt-3 flex flex-wrap gap-4 text-gray-400">
+                    <div className="mt-3 flex flex-wrap text-gray-400">
                     {devData.skills.slice(0,3).map((skill, index) => (
-                        <div key={index} className='m-1 px-4 py-2 bg-blue-200 rounded-full'>{skill}</div>
+                        <div key={index} className='m-1 px-4 py-2 bg-blue-500 text-white rounded-full'>{skill}</div>
                         ))
                     }
                     </div>

@@ -1,9 +1,10 @@
 import React from 'react'
-
 import { useEffect, useState } from 'react';
+import { API_LINK } from '../../../constants';
 
 import { CheckCircleOutline, RemoveCircleOutline } from '@mui/icons-material';
-import { API_LINK } from '../../../constants';
+
+import DevloperCardData from '../cards/DevloperCardData';
 
 const projectData = {
   project_name: "Project ABC",
@@ -18,41 +19,29 @@ const projectData = {
 };
 
 
-export default function Projectdetails(
-  
-) {
+export default function Projectdetails({projectData, projectView}) {
 
   const [developers, setDevelopers] = useState([]);
   const [teams, setTeams] = useState([]);
 
+  console.log("___project data__", projectData)
+
 
   useEffect(() => {
-    const fetchDevelopers = async () => {
-      const developerPromises = projectData.devlist.map((devId) => {
-        return fetch(`${API_LINK}/api/dev/${devId}`)
-          .then(response => response.json())
-          .catch(error => console.error(`Error fetching developer data: ${error}`));
-      });
-
-      const developerData = await Promise.all(developerPromises);
-      setDevelopers(developerData);
-      console.log("___Dev data__", developers)
-    };
-
-    const fetchTeams = async () => {
-      const teamPromises = projectData.team.map((teamId) => {
-        return fetch(`h${API_LINK}/api/dev/${teamId}`)
-          .then(response => response.json())
-          .catch(error => console.error(`Error fetching team data: ${error}`));
-        });
-        
-        const teamData = await Promise.all(teamPromises);
-        setTeams(teamData);
-        console.log("___team data__",teams)
-    };
-
-    fetchDevelopers();
-    fetchTeams();
+    const fetchData = async () => {
+      console.log("__project devs___",projectData.devlist)
+          const developerPromises = projectData.devlist.map((devId) => {
+            return fetch(`${API_LINK}/api/dev/${devId}`)
+              .then(response => response.json())
+              .then((data) => data.data)
+              .catch(error => console.error(`Error fetching developer data: ${error}`));
+          });
+    
+          const developerData = await Promise.all(developerPromises);
+          setDevelopers(developerData);
+          console.log("___Dev data__", developers)
+        };
+      fetchData()
   }, []);
 
   return (
@@ -60,6 +49,7 @@ export default function Projectdetails(
       <div className="w-full h-300 rounded-xl bg-blue-200">
         <div className="p-4">
           <h2 className="text-xl font-bold mb-2">{projectData.project_name}</h2>
+          <div className='bg-blue-500 p-2 rounded-lg inline'>{projectView}</div>
           <p className="text-lg mb-4">{projectData.description}</p>
           <div className="flex items-center mb-4">
             <div className="flex items-center mr-4">
@@ -87,21 +77,18 @@ export default function Projectdetails(
           <div className="text-white text-xs">{projectData.createdAt}</div>
         </div>
       </div>
+      <div className='mx-6 text-lg font-semibold'>Devlopers</div>
+      <div className='bg-blue-200 flex-1 grid grid-cols-2 gap-4 justify-end rounded-xl mx-4 py-2'>
+        {developers.map((developer) => (
+          <DevloperCardData key={developer.id} devData={developer} handleDevDetails={()=>{}}/>
+        ))}
+      </div>
       <div className='bg-blue-200 flex-1 grid grid-cols-4 gap-4 justify-end rounded-xl mx-4 mb-2 py-2'>
         Team
         {teams.map((team) => (
           <div key={team.id} className='w-[300px] h-[300px] bg-blue-300 rounded-xl px-4 pb-2'>
             <h2 className='text-xl font-bold mb-2'>Team {team.id}</h2>
             {/* Render additional team details */}
-          </div>
-        ))}
-      </div>
-      <div className='bg-blue-200 flex-1 grid grid-cols-4 gap-4 justify-end rounded-xl mx-4 py-2'>
-        Devlopers
-        {developers.map((developer) => (
-          <div key={developer.id} className='w-[300px] h-[300px] bg-blue-300 rounded-xl p-4'>
-            <h2 className='text-xl font-bold mb-2'>{developer.dev_first_name} {developer.dev_last_name}</h2>
-            {/* Render additional developer details */}
           </div>
         ))}
       </div>

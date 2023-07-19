@@ -1,7 +1,10 @@
 import React from 'react';
-import ProjectCard from '../cards/ProjectCard';
 
-export default function BusinessDetailCard({ companyData }) {
+import ProjectCard from '../cards/ProjectCard';
+import ProjectCardData from '../cards/ProjectCardData';
+
+export default function BusinessDetailCard({ companyData, handleProDetails}) {
+    console.log(companyData)
     return (
         <div className='w-full flex flex-col'>
             <div className="relative w-auto rounded-lg shadow-lg">
@@ -27,10 +30,9 @@ export default function BusinessDetailCard({ companyData }) {
             </div>
 
             <div className='bg-blue-200 flex-1 grid grid-cols-4 gap-4 justify-end'>
-                <ProjectCard/>
-                <ProjectCard/>
-                <ProjectCard/>
-                <ProjectCard/>
+            {companyData.Projects.map((projectData, index) => (
+          <ProjectCardData key={index} projectData={projectData} handleProDetails={handleProDetails} />
+        ))}
 
             </div>
 

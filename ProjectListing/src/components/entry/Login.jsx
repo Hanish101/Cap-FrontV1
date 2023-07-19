@@ -44,6 +44,7 @@ export default function Login() {
             const currentDate = new Date();
             localStorage.setItem('accessToken', token);
             localStorage.setItem('accessTokenCreationDate', currentDate.toISOString());
+            localStorage.setItem('userID', data.id);
 
             if((data.dev) == 'false' ){
               // console.log("Dev dosent exist")

@@ -4,19 +4,19 @@ import { API_LINK } from '../../../constants';
 import CompanyCard from '../cards/CompanyCard';
 import CompanyCardData from '../cards/CompanyCardData';
 
-export default function CompCards({handleBusDetails}) {
+export default function CompCards({handleBusDetails, filter}) {
 
   const [companyData, setCompanyData] = useState([]);
 
   useEffect(() => {
     fetchBusinessData();
-  }, []);
+  }, [filter]);
 
   const fetchBusinessData = () => {
-    fetch(`${API_LINK}/api/business`)
+    fetch(`${API_LINK}/api/business?${filter}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.data);
+        console.log(filter, data.data);
         setCompanyData(data.data);
       })
       .catch((error) => console.log(error));
@@ -31,14 +31,6 @@ export default function CompCards({handleBusDetails}) {
         {companyData.slice(0, 6).map((companyData, index) => (
           <CompanyCardData key={index} companyData={companyData} handleBusDetails={handleBusDetails}/>
         ))}
-        {/* <CompanyCardData />
-        <CompanyCard />
-        <CompanyCard />
-        <CompanyCard />
-        <CompanyCard />
-        <CompanyCard />
-        <CompanyCard />
-        <CompanyCard /> */}
       </div>
     </>
   )

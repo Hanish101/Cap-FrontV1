@@ -1,9 +1,95 @@
-import React from 'react';
-import ProjectCard from '../cards/ProjectCard';
+import React, { useState } from 'react';
+import { API_LINK } from '../../../constants';
 
-export default function BusinessDetails({ company_name, location, industry, description, present, createdAt, updatedAt }) {
+import ProjectCard from '../cards/ProjectCard';
+import ProjectCardData from '../cards/ProjectCardData';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+export default function BusinessDetails({ id, company_name, Projects, location, industry, description, present, createdAt, updatedAt, handleProjectClicked }) {
+    const [showModal, setShowModal] = useState(false);
+
+
+    const openModal = () => {
+        setShowModal(true);
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
+    };
+
+    const skillsData = [
+        'javaScript',
+        'python',
+        'java',
+        'html',
+        'css',
+        'react',
+        'node.js',
+        'sql',
+        'git',
+        'agile',
+        'aws',
+        'docker',
+        'testing',
+        'ui/ux design',
+    ];
+
+    const [selectedSkills, setSelectedSkills] = useState([]);
+    const [projectName, setProjectName] = useState('');
+    const [price, setPrice] = useState(10);
+    const [timeframe, setTimeframe] = useState('');
+    const [descriptionP, setDescriptionP] = useState('');
+
+
+    const toggleSkillSelection = (skill) => {
+        const isSelected = selectedSkills.includes(skill);
+        if (isSelected) {
+            setSelectedSkills(selectedSkills.filter((selected) => selected !== skill));
+        } else {
+            setSelectedSkills([...selectedSkills, skill]);
+        }
+    };
+
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const token = localStorage.getItem("accessToken");
+
+        fetch(`${API_LINK}/o/api/project/${id}`, {
+            method: 'POST',
+            body: JSON.stringify({
+                project_name:projectName,
+                price:price,
+                description:descriptionP,
+                technology:selectedSkills,
+                timeframe:timeframe
+            }),
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+            .catch((err) => toast(err))
+
+        closeModal();
+    };
+
+    const handleProDetails = (projectData) => {
+        console.log("clicked on project", projectData)
+        handleProjectClicked(projectData)
+    }
+
+
+
     return (
         <div className='w-full flex flex-col'>
+            <ToastContainer />
             <div className="relative w-auto rounded-lg shadow-lg">
                 <div className="bg-gray-100 p-4">
                     <h2 className="text-3xl font-bold mb-4">{company_name}</h2>
@@ -27,12 +113,126 @@ export default function BusinessDetails({ company_name, location, industry, desc
             </div>
 
             <div className='bg-blue-200 flex-1 grid grid-cols-4 gap-4 justify-end'>
-                <ProjectCard/>
-                <ProjectCard/>
-                <ProjectCard/>
-                <ProjectCard/>
+
+                <div className='w-[300px] h-[350px] bg-blue-300 mt-4 ml-4 rounded-2xl' onClick={openModal}>
+                    ADD PROJECT
+                </div>
+                { Projects.slice(0,3).map((project, index) => (
+                    <ProjectCardData projectData={project} handleProDetails = {()=> handleProDetails(project)} key={project.id}/>
+                ))}
 
             </div>
+
+            {showModal && (
+                <div className="fixed z-10 inset-0 overflow-y-auto">
+                    <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                        <div className="fixed inset-0 transition-opacity">
+                            <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+                        </div>
+
+                        <span className="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
+
+                        <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                            <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                                <div className="sm:flex sm:items-start">
+                                    <div className="mt-3 text-center sm:mt-0 sm:text-left">
+                                        <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">Add Project</h3>
+                                        <form onSubmit={handleSubmit}>
+                                            <div className="mb-4">
+                                                <label htmlFor="project_name" className="block text-sm font-medium text-gray-700">
+                                                    Project Name
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    id="project_name"
+                                                    name="project_name"
+                                                    value={projectName}
+                                                    onChange={(e) => setProjectName(e.target.value)}
+                                                    className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                />
+                                            </div>
+
+                                            <div id="devSkills" className="flex flex-wrap justify-between">
+                                                {skillsData.map((skill, index) => (
+                                                    <div
+                                                        key={index}
+                                                        className={`py-2 cursor-pointer`}
+                                                        onClick={() => toggleSkillSelection(skill)}
+                                                    >
+                                                        <div
+                                                            className={`px-4 flex items-center justify-center h-10 rounded-lg ${selectedSkills.includes(skill) ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
+                                                                }`}
+                                                        >
+                                                            {skill}
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+
+                                            <div className="mb-4">
+                                                <label htmlFor="description" className="block text-sm font-medium text-gray-700">
+                                                    Description
+                                                </label>
+                                                <textarea
+                                                    id="description"
+                                                    name="description"
+                                                    value={descriptionP}
+                                                    onChange={(e) => setDescriptionP(e.target.value)}
+                                                    className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                ></textarea>
+                                            </div>
+
+                                            <div className="mb-4">
+                                                <label htmlFor="timeframe" className="block text-sm font-medium text-gray-700">
+                                                    Timeframe
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    id="timeframe"
+                                                    name="timeframe"
+                                                    value={timeframe}
+                                                    onChange={(e) => setTimeframe(e.target.value)}
+                                                    className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                />
+                                            </div>
+
+                                            <div className="mb-4">
+                                                <label htmlFor="price" className="block text-sm font-medium text-gray-700">
+                                                    Price
+                                                </label>
+                                                <input
+                                                    type="number"
+                                                    id="price"
+                                                    name="price"
+                                                    value={price}
+                                                    onChange={(e) => setPrice(e.target.value)}
+                                                    className="mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                />
+                                            </div>
+
+                                            <div className="mt-4">
+                                                <button
+                                                    type="submit"
+                                                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                                >
+                                                    Add
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    onClick={closeModal}
+                                                    className="inline-flex justify-center ml-2 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-gray-700 bg-gray-300 hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                                                >
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
 
 
 

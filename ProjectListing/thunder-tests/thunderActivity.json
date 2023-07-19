@@ -22,14 +22,9 @@
         "method": "GET",
         "sortNum": 0,
         "created": "2023-07-17T10:51:34.717Z",
-        "modified": "2023-07-17T10:51:34.717Z",
+        "modified": "2023-07-18T15:09:09.914Z",
         "headers": [],
         "params": [],
-        "body": {
-            "type": "json",
-            "raw": "{\n  \"username\":\"hanya\",\n  \"password\":\"alphabeta\"\n}",
-            "form": []
-        },
         "tests": []
     },
     {
@@ -37,18 +32,19 @@
         "colId": "history",
         "containerId": "",
         "name": "https://build-b84g.onrender.com/user/signin",
-        "url": "https://build-b84g.onrender.com/user/signin",
-        "method": "POST",
+        "url": "https://build-b84g.onrender.com/api/business?price=auygyt",
+        "method": "GET",
         "sortNum": 0,
         "created": "2023-07-17T10:51:41.208Z",
-        "modified": "2023-07-17T10:51:41.208Z",
+        "modified": "2023-07-18T18:37:00.622Z",
         "headers": [],
-        "params": [],
-        "body": {
-            "type": "json",
-            "raw": "{\n  \"username\":\"hanya\",\n  \"password\":\"alphabeta\"\n}",
-            "form": []
-        },
+        "params": [
+            {
+                "name": "price",
+                "value": "auygyt",
+                "isPath": false
+            }
+        ],
         "tests": []
     },
     {
@@ -148,17 +144,36 @@
         "method": "GET",
         "sortNum": 0,
         "created": "2023-07-17T11:11:32.052Z",
-        "modified": "2023-07-17T11:13:00.673Z",
+        "modified": "2023-07-18T12:41:23.062Z",
         "headers": [],
         "params": [],
         "body": {
             "type": "json",
-            "raw": "{\n  \"username\":\"comphanya\",\n  \"password\":\"betaalpha\"\n}",
+            "raw": "{\n  \"project_name\":\"secobd best project\",\n  \"price\":20,\n  \"timeframe\":\"200days\",\n  \"description\":\"Not the best but working\",\n  \"technology\":[\"html\",\"css\"]\n}",
             "form": []
         },
         "auth": {
             "type": "bearer",
             "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2MDI2MWM0LWFhNjUtNDA2Yi04YjFjLTQ0ODIyMGFlM2QyNSIsImlhdCI6MTY4OTU5MjM0OH0.Tkp6UxRdwhDpLCmCT-ZdLQvMsmPGBimRTxan-P5fpvY"
+        },
+        "tests": []
+    },
+    {
+        "_id": "88f6417f-e257-41fc-bcff-37792db1c4db",
+        "colId": "history",
+        "containerId": "",
+        "name": "https://build-b84g.onrender.com/api/dev/02dd2014-faa4-48f4-aa24-80279970c87a",
+        "url": "https://build-b84g.onrender.com/api/dev/02dd2014-faa4-48f4-aa24-80279970c87a",
+        "method": "GET",
+        "sortNum": 0,
+        "created": "2023-07-18T15:59:52.766Z",
+        "modified": "2023-07-18T15:59:52.766Z",
+        "headers": [],
+        "params": [],
+        "body": {
+            "type": "json",
+            "raw": "{\n  \"username\":\"Hanya\",\n  \"password\":\"alphabeta\"\n}",
+            "form": []
         },
         "tests": []
     }
