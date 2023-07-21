@@ -30,20 +30,21 @@ export default function BusinessDetails({ id, company_name, Projects, location, 
     };
 
     const skillsData = [
-        'javaScript',
-        'python',
-        'java',
-        'html',
-        'css',
-        'react',
-        'node.js',
-        'sql',
-        'git',
-        'agile',
-        'aws',
-        'docker',
-        'testing',
-        'ui/ux design',
+        ['javascript','JavaScript'],
+        ['python','Python'],
+        ['java','Java'],
+        ['html','HTML'],
+        ['css','CSS'],
+        ['react','React.js'],
+        ['node','Node.js'],
+        ['docker','Docker'],
+        ['mongodb','MongoDB'],
+        ['uiux','UI/UX'],
+        ['sql','SQL'],
+        ['git','Git'],
+        ['agile','Agile'],
+        ['aws','AWS'],
+        ['testing','Testing'],
     ];
 
     // Project creation
@@ -233,13 +234,13 @@ export default function BusinessDetails({ id, company_name, Projects, location, 
                                                     <div
                                                         key={index}
                                                         className={`py-2 cursor-pointer`}
-                                                        onClick={() => toggleSkillSelection(skill)}
+                                                        onClick={() => toggleSkillSelection(skill[0])}
                                                     >
                                                         <div
-                                                            className={`px-4 flex items-center justify-center h-10 rounded-lg ${selectedSkills.includes(skill) ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
+                                                            className={`px-4 flex items-center justify-center h-10 rounded-lg ${selectedSkills.includes(skill[0]) ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
                                                                 }`}
                                                         >
-                                                            {skill}
+                                                            {skill[1]}
                                                         </div>
                                                     </div>
                                                 ))}

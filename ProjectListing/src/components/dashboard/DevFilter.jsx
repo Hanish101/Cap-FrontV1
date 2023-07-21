@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 export default function DevFilter({ handleFilterSelect }) {
     const skillsData = [
-        ['javaScript','JavaScript'],
+        ['javascript','JavaScript'],
         ['python','Python'],
         ['java','Java'],
         ['html','HTML'],

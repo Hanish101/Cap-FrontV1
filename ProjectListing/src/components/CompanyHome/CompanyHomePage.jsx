@@ -50,8 +50,8 @@ export default function CompanyHomePage() {
             <div className="flex-1 flex flex-col bg-blue-400">
                 <CompanyNavbar activePage={activePage} onPageChange={handlePageChange} />
                 <div className="flex-1 flex">
-                    <div className="w-[350px] h-[900px] rounded-b-xl bg-gray-200 p-8 flex flex-col overflow-y-scroll">
-                        {activeFilter}
+                    <div className="w-[350px] h-[900px] rounded-b-xl p-8 flex flex-col ">
+                        {/* {activeFilter} */}
                     </div>
                     <div className="flex-1 flex flex-row w-full m-4 pt-1">
                         {/* <DevloperViewCompany/> */}

@@ -10,7 +10,7 @@ import DevRegister from './DevRegister'
 import CompanySignIn from './CompanySignIn'
 import CompanySignUp from './CompanySignUp'
 import UserForm from '../auth/Auth'
-import DevImgRegister from './DevImgRegister'
+import DevImgRegister from './create/DevImgRegister'
 
 export default function EntryMain() {
 
@@ -22,12 +22,6 @@ export default function EntryMain() {
         {/* <img src="https://unsplash.it/1920/1010" alt="" /> */}
       </div>
       <div className="entry-main-page bg-white overflow-y-scroll">
-        {/* <DevRegister/> */}
-        {/* <CompanyRegister/> */}
-        {/* <Login/> */}
-        {/* <Register/> */}
-        {/* <ChooseUser/> */}
-        {/* <UserForm /> */}
         <Routes>
           <Route exact path="/" element={<ChooseUser />} />
           <Route path="/register" element={<Register />} />

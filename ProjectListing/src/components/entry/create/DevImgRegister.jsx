@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
-import { API_LINK } from '../../../constants';
+import { API_LINK } from '../../../../constants';
 import axios from 'axios';
 
 

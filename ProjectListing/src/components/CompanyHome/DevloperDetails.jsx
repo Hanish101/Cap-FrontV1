@@ -9,16 +9,6 @@ export default function DevloperDetails({ devData }) {
     const [rating, setRating] = useState(1)
     const [testimonial, setTestimonial] = useState("")
 
-    // const [devData, setDevData] = useState([])
-
-    // fetch(`https://build-b84g.onrender.com/api/dev/${devID}`)
-    //     .then(response => response.json())
-    //     .then((data) => {
-    //         setDevData(data)
-    //         console.log(devData)
-    //     })
-    //     .catch(error => console.error(`Error fetching developer data: ${error}`))
-
     const handleRecruitClick = () => {
         
     };

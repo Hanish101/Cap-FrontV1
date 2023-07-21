@@ -15,7 +15,7 @@ export default function ProjectCards({handleProDetails, filter}) {
     fetch(`${API_LINK}/api/project/${filter}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        console.log(filter,'filteres' ,data.data);
         setProjectData(data.data);
       })
       .catch((error) => console.log(error));

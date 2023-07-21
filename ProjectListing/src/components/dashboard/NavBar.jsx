@@ -51,20 +51,21 @@ export default function NavBar({ activePage, onPageChange }) {
     const closeModal = () => setShowModal(false)
 
     const skillsData = [
-        'JavaScript',
-        'Python',
-        'Java',
-        'HTML',
-        'CSS',
-        'React',
-        'Node.js',
-        'SQL',
-        'Git',
-        'Agile',
-        'AWS',
-        'Docker',
-        'Testing',
-        'UI/UX Design',
+        ['javascript','JavaScript'],
+        ['python','Python'],
+        ['java','Java'],
+        ['html','HTML'],
+        ['css','CSS'],
+        ['react','React.js'],
+        ['node','Node.js'],
+        ['docker','Docker'],
+        ['mongodb','MongoDB'],
+        ['uiux','UI/UX'],
+        ['sql','SQL'],
+        ['git','Git'],
+        ['agile','Agile'],
+        ['aws','AWS'],
+        ['testing','Testing'],
     ];
 
     const toggleSkillSelection = (skill) => {
@@ -80,29 +81,6 @@ export default function NavBar({ activePage, onPageChange }) {
         e.preventDefault();
 
         const token = localStorage.getItem("accessToken");
-
-        // const formData = new FormData();
-
-        // formData.append('dev_fname', devFName);
-        // formData.append('dev_lname', devLName);
-        // formData.append('price', parseInt(price));
-        // formData.append('bio', bio);
-        // formData.append('background', background);
-        // formData.append('portfolio_link', portfolioLink);
-        // formData.append('address', address);
-        // formData.append('phone', phone);
-        // formData.append('email', email);
-
-        // console.log(selectedSkills)
-
-        // selectedSkills.forEach((skill) => {
-        //     formData.append('skills[]', skill);
-        // });
-
-        // const jsonPayload = (Object.fromEntries(formData));
-
-        // console.log('JSON payload:', jsonPayload);
-
         const userID = localStorage.getItem('userID')
 
         if (token && userID) {
@@ -254,13 +232,13 @@ export default function NavBar({ activePage, onPageChange }) {
                                                             <div
                                                                 key={index}
                                                                 className={`py-2 cursor-pointer`}
-                                                                onClick={() => toggleSkillSelection(skill)}
+                                                                onClick={() => toggleSkillSelection(skill[0])}
                                                             >
                                                                 <div
-                                                                    className={`px-4 mx-1 flex items-center justify-center h-10 rounded-lg ${selectedSkills.includes(skill) ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
+                                                                    className={`px-4 mx-1 flex items-center justify-center h-10 rounded-lg ${selectedSkills.includes(skill[0]) ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
                                                                         }`}
                                                                 >
-                                                                    {skill}
+                                                                    {skill[1]}
                                                                 </div>
                                                             </div>
                                                         ))}

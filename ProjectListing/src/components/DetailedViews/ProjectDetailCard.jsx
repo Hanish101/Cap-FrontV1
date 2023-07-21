@@ -11,7 +11,6 @@ import DevloperCardData from '../cards/DevloperCardData';
 export default function ProjectDetailCard({ projectData }) {
 
   const [developers, setDevelopers] = useState([]);
-  const [teams, setTeams] = useState([]);
 
   const [applied, setApplied] = useState(false);
 
@@ -22,26 +21,11 @@ export default function ProjectDetailCard({ projectData }) {
       setApplied(true);
     }
 
-    const fetchData = async () => {
-      console.log("__project devs___",projectData.devlist)
-          const developerPromises = projectData.devlist.map((devId) => {
-            return fetch(`${API_LINK}/api/dev/${devId}`)
-              .then(response => response.json())
-              .then((data) => data.data)
-              .catch(error => console.error(`Error fetching developer data: ${error}`));
-          });
-    
-          const developerData = await Promise.all(developerPromises);
-          setDevelopers(developerData);
-          console.log("___Dev data__", developers)
-        };
-      fetchData()
-
-  },[]);
+  }, []);
 
   const applyProject = () => {
-    if(!applied){
-      fetch(`${API_LINK}/u/api/project/${projectData.id}`,{
+    if (!applied) {
+      fetch(`${API_LINK}/u/api/project/${projectData.id}`, {
         method: "PATCH",
         body: JSON.stringify({
           devlist: userID
@@ -51,43 +35,29 @@ export default function ProjectDetailCard({ projectData }) {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         }
       })
-      .then((response)=> response.json())
-      .then((data)=>{
-        if(data.data){
-          setApplied(true);
-        }
-      })
-      .catch((error)=>toast(error))
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.data) {
+            setApplied(true);
+          }
+        })
+        .catch((error) => toast(error))
     }
 
   }
 
-  // useEffect(() => {
-    //   const fetchData = async () => {
-    //     const developerPromises = projectData.devlist.map((devId) => {
-    //       return fetch(`${API_LINK}/api/dev/${devId}`)
-    //         .then(response => response.json())
-    //         .catch(error => console.error(`Error fetching developer data: ${error}`));
-    //     });
-  
-    //     const developerData = await Promise.all(developerPromises);
-    //     setDevelopers(developerData);
-    //     console.log("___Dev data__", developers)
-    //   };
-    //   fetchData()
-    // },[]);
 
   return (
     <div className='w-full flex flex-col'>
-      <ToastContainer/>
+      <ToastContainer />
       <div className="w-full h-300 rounded-xl bg-blue-200">
         <div className="p-4">
           <div className='flex justify-between'>
             <h2 className="text-xl font-bold mb-2">{projectData.project_name}</h2>
             {applied ? (
               <button className="text-md text-white mb-4 px-4 py-2 rounded-lg bg-blue-700" >Applied</button>
-            ):(
-              <button className="text-md text-white mb-4 bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-700" onClick={()=>applyProject()}>Apply</button>
+            ) : (
+              <button className="text-md text-white mb-4 bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-700" onClick={() => applyProject()}>Apply</button>
             )
             }
           </div>
@@ -119,17 +89,8 @@ export default function ProjectDetailCard({ projectData }) {
       </div>
       <div className='mx-6 text-lg font-semibold'>Devlopers</div>
       <div className='bg-blue-200 flex-1 grid grid-cols-2 gap-4 rounded-xl mx-4 py-2'>
-        {developers.map((developer) => (
-          <DevloperCardData key={developer.id} devData={developer} handleDevDetails={()=>{}}/>
-        ))}
-      </div>
-      <div className='bg-blue-200 flex-1 grid grid-cols-4 gap-4 justify-end rounded-xl mx-4 mb-2 py-2'>
-        Team
-        {teams.map((team) => (
-          <div key={team.id} className='w-[300px] h-[300px] bg-blue-300 rounded-xl px-4 pb-2'>
-            <h2 className='text-xl font-bold mb-2'>Team {team.id}</h2>
-            {/* Render additional team details */}
-          </div>
+        {developers?.map((developer) => (
+          <DevloperCardData key={developer.id} devData={developer} handleDevDetails={() => { }} />
         ))}
       </div>
     </div>

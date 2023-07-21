@@ -45,21 +45,22 @@ export default function Projectdetails({ projectData, projectView }) {
   };
 
   const skillsData = [
-    'javaScript',
-    'python',
-    'java',
-    'html',
-    'css',
-    'react',
-    'node.js',
-    'sql',
-    'git',
-    'agile',
-    'aws',
-    'docker',
-    'testing',
-    'ui/ux design',
-  ];
+    ['javascript','JavaScript'],
+    ['python','Python'],
+    ['java','Java'],
+    ['html','HTML'],
+    ['css','CSS'],
+    ['react','React.js'],
+    ['node','Node.js'],
+    ['docker','Docker'],
+    ['mongodb','MongoDB'],
+    ['uiux','UI/UX'],
+    ['sql','SQL'],
+    ['git','Git'],
+    ['agile','Agile'],
+    ['aws','AWS'],
+    ['testing','Testing'],
+];
 
   const [selectedSkills, setSelectedSkills] = useState(projectData.technology);
   const [projectName, setProjectName] = useState(projectData.project_name);
@@ -111,6 +112,8 @@ export default function Projectdetails({ projectData, projectView }) {
     else {
       toast("Please login to delete")
     }
+
+    closeModal()
 
 
   }
@@ -195,21 +198,12 @@ export default function Projectdetails({ projectData, projectView }) {
           <div className="text-white text-xs">{projectData.createdAt}</div>
         </div>
       </div>
-      <div className='mx-6 text-lg font-semibold'>Devlopers</div>
+      {/* <div className='mx-6 text-lg font-semibold'>Devlopers</div>
       <div className='bg-blue-200 flex-1 grid grid-cols-2 gap-4 justify-end rounded-xl mx-4 py-2'>
         {developers.map((developer) => (
           <DevloperCardData key={developer.id} devData={developer} handleDevDetails={() => { }} />
         ))}
-      </div>
-      <div className='bg-blue-200 flex-1 grid grid-cols-4 gap-4 justify-end rounded-xl mx-4 mb-2 py-2'>
-        Team
-        {teams.map((team) => (
-          <div key={team.id} className='w-[300px] h-[300px] bg-blue-300 rounded-xl px-4 pb-2'>
-            <h2 className='text-xl font-bold mb-2'>Team {team.id}</h2>
-            {/* Render additional team details */}
-          </div>
-        ))}
-      </div>
+      </div> */}
 
       {showModal && (
         <div className="fixed z-10 inset-0 overflow-y-auto">
@@ -241,18 +235,17 @@ export default function Projectdetails({ projectData, projectView }) {
                       </div>
 
                       <div id="devSkills" className="flex flex-wrap justify-between mb-4">
-                        <div></div>
                         {skillsData.map((skill, index) => (
                           <div
                             key={index}
                             className={`py-2 cursor-pointer`}
-                            onClick={() => toggleSkillSelection(skill)}
+                            onClick={() => toggleSkillSelection(skill[0])}
                           >
                             <div
-                              className={`px-4 flex items-center justify-center h-10 rounded-lg ${selectedSkills.includes(skill) ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
+                              className={`px-4 flex items-center justify-center h-10 rounded-lg mx-1 ${selectedSkills.includes(skill[0]) ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
                                 }`}
                             >
-                              {skill}
+                              {skill[1]}
                             </div>
                           </div>
                         ))}

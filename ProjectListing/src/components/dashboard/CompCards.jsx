@@ -13,7 +13,7 @@ export default function CompCards({handleBusDetails, filter}) {
   }, [filter]);
 
   const fetchBusinessData = () => {
-    fetch(`${API_LINK}/api/business?${filter}`)
+    fetch(`${API_LINK}/api/business/${filter}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(filter, data.data);
