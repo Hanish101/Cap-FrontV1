@@ -69,11 +69,11 @@ export default function Dashboard() {
   }, [activePage, selectedFilter]);
 
     return (
-    <div className="flex h-screen">
+    <div className="flex h-screen bg-offwhite">
       <div className="flex-1 flex flex-col">
         <NavBar activePage={activePage} onPageChange={handlePageChange} />
         <div className="flex-1 flex">
-          <div className="w-[350px] h-[900px] rounded-b-xl bg-gray-200 p-8 flex flex-col overflow-y-scroll">
+          <div className="w-[350px] h-[900px] hidden md:block rounded-b-xl bg-gray-200 p-8 flex flex-col overflow-y-scroll">
             {activeFilter}
           </div>
           <div className="flex-1 flex flex-col m-4 pt-1">

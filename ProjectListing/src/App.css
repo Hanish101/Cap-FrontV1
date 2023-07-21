@@ -12,12 +12,17 @@
   background-color: aqua;
 }
 
+.landing-page{
+  min-height: 60vh;
+  margin: 0 15vw;
+}
+
+
 
 /* Footer */
 
 .footer-main{
   margin: 0 15vw;
-  background-color: chartreuse;
 }
 
 

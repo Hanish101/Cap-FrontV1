@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { API_LINK } from '../../../constants';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import CompanyCardElement from './cards/CompanyCardElement';
 
 export default function CompanyDetails({ handleBusinessClicked }) {
@@ -23,6 +26,7 @@ export default function CompanyDetails({ handleBusinessClicked }) {
         e.preventDefault();
 
         const token = localStorage.getItem("accessToken");
+        console.log(token)
         const formData = new FormData(e.target);
 
         formData.append('image', file)
@@ -58,8 +62,13 @@ export default function CompanyDetails({ handleBusinessClicked }) {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data.data);
-                setOrgData(data.data);
+                if(data.data){
+                    console.log(data.data);
+                    setOrgData(data.data);
+                }
+                else{
+                    toast(data.message)
+                }
             })
             .catch((error) => console.log(error));
     };
@@ -72,6 +81,7 @@ export default function CompanyDetails({ handleBusinessClicked }) {
 
     return (
         <div className='flex flex-wrap bg-blue-300 w-full p-4 rounded-lg'>
+            <ToastContainer />
             <div className='p-4 flex-1 flex w-full justify-start items-between flex-wrap gap-4 border-blue-200 bg-blue-300 border-r-lg ml-4'>
                 {orgData.Businesses?.map((company, index) => (
                     <CompanyCardElement

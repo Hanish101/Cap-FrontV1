@@ -19,7 +19,7 @@ export default function EntryMain() {
 
     <div className='entry-main '>
       <div className="entry-main-bg">
-        <img src="https://unsplash.it/1920/1010" alt="" />
+        {/* <img src="https://unsplash.it/1920/1010" alt="" /> */}
       </div>
       <div className="entry-main-page bg-white overflow-y-scroll">
         {/* <DevRegister/> */}

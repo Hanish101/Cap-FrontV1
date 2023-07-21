@@ -17,6 +17,7 @@ export default function DevCards({handleDevDetails, filter}) {
             .then((response) => response.json())
             .then((data) => {
                 setDevsData(data.data);
+                console.log(data.data);
             })
             .catch((error) => console.log(error));
     };
@@ -26,7 +27,7 @@ export default function DevCards({handleDevDetails, filter}) {
         <>
             <h1 className="text-3xl pb-4 mx-3">Developers {filter}</h1>
             {/* <button onClick={()=>handleDevDetails({})}>Click</button> */}
-            <div className="h-[800px] flex flex-wrap justify-center p-4 pb-8 item-top overflow-y-scroll">
+            <div className="h-[800px] max-w-[1600px] flex flex-wrap flex-cols-4 justify-center gap-4 mx-8 item-top overflow-y-scroll">
                 {devsData.map((devData, index) => (
                     <DevloperCardData key={index} devData={devData} handleDevDetails={handleDevDetails}/>
                 ))}

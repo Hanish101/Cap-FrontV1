@@ -9,6 +9,8 @@ import { API_LINK } from '../../../constants';
 
 export default function DevRegister() {
 
+    const navigate = useNavigate();
+
     const skillsData = [
         'JavaScript',
         'Python',
@@ -71,13 +73,11 @@ export default function DevRegister() {
 
         formData.append('image', file)
 
-        console.log(file)
-
         const jsonPayload = JSON.stringify(Object.fromEntries(formData));
 
         console.log('JSON payload:', jsonPayload);
 
-        formData.set('price', 300)
+        formData.set('price', price)
 
 
 
@@ -101,6 +101,11 @@ export default function DevRegister() {
                 console.log("___data___", data)
                 if (data.message) {
                     toast(data.message)
+                }
+                if(data.id){
+                    navigate('/dashboard')
+                    localStorage.setItem('userID', data.data.id);
+
                 }
             })
             .catch((err) => {

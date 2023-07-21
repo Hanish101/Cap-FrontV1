@@ -18,10 +18,10 @@ export default function CompanyNavbar({ activePage, onPageChange }) {
                             onClick={() => onPageChange('company-home')}>
                                 Company homepage
                             </div>
-                            <div className={`flex-auto py-1 px-4 text-white font-semibold text-lg border-b-2 hover:border-blue-300 ${activePage === 'developers' ? 'text-blue-300 border-blue-300': 'border-indigo-950'}`}
+                            {/* <div className={`flex-auto py-1 px-4 text-white font-semibold text-lg border-b-2 hover:border-blue-300 ${activePage === 'developers' ? 'text-blue-300 border-blue-300': 'border-indigo-950'}`}
                             onClick={() => onPageChange('developers')}>
                                 Developers
-                            </div>
+                            </div> */}
 
                         </div>
                     </div>

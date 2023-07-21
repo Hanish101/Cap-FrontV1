@@ -77,38 +77,6 @@ export default function ProjectDetailCard({ projectData }) {
     //   fetchData()
     // },[]);
 
-
-
-
-  //   useEffect(() => {
-  //     const fetchDevelopers = async () => {
-  //       const developerPromises = projectData.devlist.map((devId) => {
-  //         return fetch(`${API_LINK}/api/dev/${devId}`)
-  //           .then(response => response.json())
-  //           .catch(error => console.error(`Error fetching developer data: ${error}`));
-  //       });
-
-  //       const developerData = await Promise.all(developerPromises);
-  //       setDevelopers(developerData);
-  //       console.log("___Dev data__", developers)
-  //     };
-
-  //     const fetchTeams = async () => {
-  //       const teamPromises = projectData.team.map((teamId) => {
-  //         return fetch(`h${API_LINK}/api/dev/${teamId}`)
-  //           .then(response => response.json())
-  //           .catch(error => console.error(`Error fetching team data: ${error}`));
-  //         });
-
-  //         const teamData = await Promise.all(teamPromises);
-  //         setTeams(teamData);
-  //         console.log("___team data__",teams)
-  //     };
-
-  //     fetchDevelopers();
-  //     fetchTeams();
-  //   }, []);
-
   return (
     <div className='w-full flex flex-col'>
       <ToastContainer/>
