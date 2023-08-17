@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 
 export default function DevFilter({ handleFilterSelect }) {
     const skillsData = [
-        ['javascript','JavaScript'],
-        ['python','Python'],
-        ['java','Java'],
-        ['html','HTML'],
-        ['css','CSS'],
-        ['react','React.js'],
-        ['node','Node.js'],
-        ['docker','Docker'],
-        ['mongodb','MongoDB'],
-        ['uiux','UI/UX'],
+        ['javascript', 'JavaScript'],
+        ['python', 'Python'],
+        ['java', 'Java'],
+        ['html', 'HTML'],
+        ['css', 'CSS'],
+        ['react', 'React.js'],
+        ['node', 'Node.js'],
+        ['docker', 'Docker'],
+        ['mongodb', 'MongoDB'],
+        ['uiux', 'UI/UX'],
     ];
 
     const [selectedSkill, setSelectedSkill] = useState('');
@@ -23,7 +23,7 @@ export default function DevFilter({ handleFilterSelect }) {
 
     return (
         <div>
-            <div className='text-2xl mb-4 font-semibold'>Filters</div>
+            <div className='text-3xl mb-4 font-semibold'>Filters</div>
             {skillsData.map((skill) => (
                 <div className='py-1' key={skill[0]}>
                     <input
@@ -35,11 +35,11 @@ export default function DevFilter({ handleFilterSelect }) {
                         onChange={handleSkillChange}
                         className="form-radio h-4 w-4 rounded-sm text-blue-500 transition duration-150 ease-in-out"
                     />
-                    <label className='mx-3 text-lg' htmlFor={skill[0]}>{skill[1]}</label>
+                    <label className='mx-3 text-xl' htmlFor={skill[0]}>{skill[1]}</label>
                 </div>
             ))}
 
-            <div className='text-2xl mt-5 mb-2 font-semibold'>Sort</div>
+            <div className='text-3xl mt-5 mb-2 font-semibold'>Sort</div>
             <div className='text-xl mb-2 font-semibold'>By Date</div>
             <div className='py-1' key='sort=asc'>
                 <input
@@ -51,7 +51,7 @@ export default function DevFilter({ handleFilterSelect }) {
                     onChange={handleSkillChange}
                     className="form-radio h-4 w-4 rounded-sm text-blue-500 transition duration-150 ease-in-out"
                 />
-                <label className='mx-3 text-lg' htmlFor='sort=asc'>Oldest first</label>
+                <label className='mx-3 text-xl' htmlFor='sort=asc'>Oldest first</label>
             </div>
             <div className='py-1' key='sort=desc'>
                 <input
@@ -63,7 +63,7 @@ export default function DevFilter({ handleFilterSelect }) {
                     onChange={handleSkillChange}
                     className="form-radio h-4 w-4 rounded-sm text-blue-500 transition duration-150 ease-in-out"
                 />
-                <label className='mx-3 text-lg' htmlFor='sort=desc'>Newest first</label>
+                <label className='mx-3 text-xl' htmlFor='sort=desc'>Newest first</label>
             </div>
 
             <div className='text-xl mt-3 mb-2 font-semibold'>By Price</div>
@@ -77,7 +77,7 @@ export default function DevFilter({ handleFilterSelect }) {
                     onChange={handleSkillChange}
                     className="form-radio h-4 w-4 rounded-sm text-blue-500 transition duration-150 ease-in-out"
                 />
-                <label className='mx-3 text-lg' htmlFor='price=asc'>Low to High</label>
+                <label className='mx-3 text-xl' htmlFor='price=asc'>Low to High</label>
             </div>
             <div className='py-1' key='price=desc'>
                 <input
@@ -89,9 +89,9 @@ export default function DevFilter({ handleFilterSelect }) {
                     onChange={handleSkillChange}
                     className="form-radio h-4 w-4 rounded-sm text-blue-500 transition duration-150 ease-in-out"
                 />
-                <label className='mx-3 text-lg'  htmlFor='price=desc'>High to Low</label>
+                <label className='mx-3 text-xl'  htmlFor='price=desc'>High to Low</label>
             </div>
-            <div className='py-1' key='none'>
+            <div className='mt-10' key='none'>
                 <input
                     type="radio"
                     id='filternone'
@@ -101,9 +101,24 @@ export default function DevFilter({ handleFilterSelect }) {
                     onChange={handleSkillChange}
                     className="form-radio h-4 w-4 rounded-sm text-blue-500 transition duration-150 ease-in-out"
                 />
-                <label className='mx-3 text-lg' htmlFor='filternone'>None</label>
+                <label className='mx-3 text-xl' htmlFor='filternone'>Clear</label>
             </div>
-            <p>Selected filter: {selectedSkill}</p>
+            {/* <p>Selected filter: {selectedSkill}</p> */}
         </div>
+
+        // <div className="flex flex-wrap gap-2">
+        //     {skillsData.map(([value, label]) => (
+        //         <button
+        //             key={value}
+        //             onClick={() => setSelectedSkill(value)}
+        //             className={`px-4 py-2 border ${selectedSkill === value ? 'bg-blue-500 text-white' : 'bg-white text-gray-800'
+        //                 } rounded-md`}
+        //         >
+        //             {label}
+        //         </button>
+        //     ))}
+
+        //     <div>{selectedSkill}</div>
+        // </div>
     );
 }

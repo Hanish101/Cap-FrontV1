@@ -33,20 +33,22 @@ export default function CompanyDetails({ handleBusinessClicked }) {
 
         fetch(`${API_LINK}/o/api/company`, {
             method: 'POST',
-            body:formData,
-            headers: { 
+            body: formData,
+            headers: {
                 Authorization: `Bearer ${token}`,
-                // 'Content-Type': 'multipart/form-data',
             }
         })
-        .then((response)=>response.json())
-        .then((data)=> console.log(data))
-        .catch((error)=> {console.log(error)})
+            .then((response) => response.json())
+            .then((data) => {
+                toast("Business Added Successfully")
+                fetchOrgData();
+            })
+            .catch((error) => { console.log(error) })
 
         closeModal()
 
-    }
 
+    }
 
     useEffect(() => {
         fetchOrgData();
@@ -62,11 +64,11 @@ export default function CompanyDetails({ handleBusinessClicked }) {
         })
             .then((response) => response.json())
             .then((data) => {
-                if(data.data){
+                if (data.data) {
                     console.log(data.data);
                     setOrgData(data.data);
                 }
-                else{
+                else {
                     toast(data.message)
                 }
             })
@@ -80,19 +82,28 @@ export default function CompanyDetails({ handleBusinessClicked }) {
 
 
     return (
-        <div className='flex flex-wrap bg-blue-300 w-full p-4 rounded-lg'>
+        <div className='w-full'>
             <ToastContainer />
-            <div className='p-4 flex-1 flex w-full justify-start items-between flex-wrap gap-4 border-blue-200 bg-blue-300 border-r-lg ml-4'>
-                {orgData.Businesses?.map((company, index) => (
-                    <CompanyCardElement
-                        onClick={() => handleBusinessClick(company)}
-                        key={index}
-                        companyName={company?.companyName}
-                        location={company?.location}
-                        industry={company?.industry}
-                        projects={company?.projects}
-                    />
-                ))}
+            <div className='flex justify-end'>
+                <button onClick={openModal} className="bg-blue-500 text-white py-2 mr-6 mt-6 w-40 text-lg font-bold rounded-lg">
+                    Add Business
+                </button>
+
+            </div>
+            <div className='flex flex-wrap w-full p-4 justify-between rounded-lg'>
+
+                <div className='p-4 px-20 flex-1 flex w-full justify-between items-between flex-wrap gap-4 border-r-lg ml-4'>
+                    {orgData.Businesses?.map((company, index) => (
+                        <CompanyCardElement
+                            onClick={() => handleBusinessClick(company)}
+                            key={index}
+                            companyData={company}
+                        />
+                    ))}
+
+
+                </div>
+
 
                 {showModal && (
                     <div className="fixed z-10 inset-0 overflow-y-auto">
@@ -107,7 +118,7 @@ export default function CompanyDetails({ handleBusinessClicked }) {
                                 <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                                     <div className="sm:flex sm:items-start">
                                         <div className="mt-3 text-center sm:mt-0 sm:text-left">
-                                            <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">Add Project</h3>
+                                            <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">Add Business</h3>
                                             <form onSubmit={handleSubmit}>
                                                 <div className="mb-4">
                                                     <label htmlFor="companyName" className="block mb-2">
@@ -185,13 +196,8 @@ export default function CompanyDetails({ handleBusinessClicked }) {
                         </div>
                     </div>
                 )}
-
-
-
             </div>
-            <button onClick={openModal} className="bg-blue-500 text-white px-4 py-2 h-[40px] rounded hover:bg-blue-600">
-                    Add Business
-                </button>
+
         </div>
     )
 }

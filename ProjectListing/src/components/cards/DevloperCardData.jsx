@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
 export default function DevloperCardData({ devData, handleDevDetails }) {
 
@@ -7,49 +7,91 @@ export default function DevloperCardData({ devData, handleDevDetails }) {
         console.log("clickes")
     }
 
-    
+
     const getRandomColorIndex = () => {
         return Math.floor(Math.random() * Object.keys(colors).length);
     };
 
+    const truncate = (str, max) => {
+        return str.length > max ? str.slice(0, max) + '...' : str;
+      };
+
+
+
     // Custom colors from your Tailwind CSS configuration
     const colors = {
-        cardorange: '#ffe1cc',
-        cardpurple: '#e3dbfa',
-        cardgreen: '#d4f6ed',
-        cardblue: '#dff2ff',
-        cardgrey: '#eceef5',
+        cardorange: '#FFD0B0',
+        cardpurple: '#D5C4F7',
+        cardgreen: '#A8E3D8',
+        cardblue: '#B0E8FF',
+        cardyellow: '#FFDDA0',
+        cdb4db: '#cdb4db',
+        ffc8dd: '#ffc8dd',
+        ffafcc: '#ffafcc',
+        a2d2ff: '#a2d2ff',
+        bde0fe: '#bde0fe',
+        b8e0d2: '#b8e0d2',
+        a539ad9: '#539ad9',
+        f79d65: '#f79d65',
+        f25c54: '#f25c54',
     };
-    
+
+
     const randomColor = getRandomColorIndex();
 
 
 
     return (
 
-        <div className="shadow-lg rounded-lg p-4 w-72 h-90 border-2 border-gray-200 m-2"
+        <div className="relative w-full group max-w-md min-w-0 mx-auto mt-6 mb-6 break-words bg-white border shadow-2xl dark:bg-gray-700 dark:border-gray-700 md:max-w-sm rounded-xl"
             onClick={() => handleDetailClick()}>
-            <div className="flex justify-center items-center rounded-lg" style={{ backgroundColor: Object.values(colors)[randomColor] }}>
-                <img
-                    src={devData.imageUrl}
-                    alt={`${devData.dev_first_name} ${devData.dev_last_name}`}
-                    className="w-32 h-32 rounded-full mx-auto m-4"
-                />
-            </div>
-            <div className="font-bold text-xl p-2 mb-2">{`${devData.dev_first_name} ${devData.dev_last_name}`}</div>
-            <div className="text-sm text-gray-600 mb-4">{devData.bio}</div>
-            <div className="flex flex-wrap gap-2">
-                {devData.skills.slice(0, 4).map((skill, index) => (
-                    <span
-                        key={index}
-                        className="px-2 py-1 rounded-full text-sm text-gray-800"
-                        style={{ backgroundColor: Object.values(colors)[randomColor] }}
-                    >
-                        {skill}
-                    </span>
-                ))}
+            <div className="pb-6">
+                <div className="flex justify-between">
+                    <div className="flex justify-start mx-16 w-full">
+                        <div className="relative">
+                            <img src={devData.imageUrl} className="w-40 h-40 rounded-full border-white dark:border-gray-700 rounded-full align-middle border-8 absolute -m-16 -ml-18 lg:-ml-16 max-w-[150px]" />
+                        </div>
+                    </div>
+                    <div className="m-6 whitespace-nowrap mb-1 text-2xl font-bold leading-normal text-white">{devData.dev_first_name} {devData.dev_last_name}</div>
+                </div>
+                <div className="mt-20 ">
+
+                        <div className="flex flex-wrap justify-center gap-2">
+                            {devData.skills.slice(0, 4).map((skill, index) => (
+                                <span
+                                    key={index}
+                                    className="px-2 py-1 rounded-full text-lg bg-gray-300"
+                                >
+                                    {skill}
+                                </span>
+                            ))}
+                        {/* </div> */}
+                    </div>
+
+                </div>
+                <div className='text-white text-center pt-6'>price ${devData.price}/hr</div>
+                <div class="pt-6 mx-6 mt-6 text-center border-t border-gray-200 dark:border-gray-700/50">
+                    <div class="flex flex-wrap justify-center">
+                        <div class="w-full px-6">
+                            <p class="mb-4 font-light leading-relaxed text-white">
+                                {devData.background}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {/* <div class="relative h-6 overflow-hidden translate-y-6 rounded-b-xl">
+                        <div class="absolute flex -space-x-12 rounded-b-2xl">
+                            <div class="w-36 h-8 transition-colors duration-200 delay-75 transform skew-x-[35deg] bg-amber-400/90 group-hover:bg-amber-600/90 z-10"></div>
+                            <div class="w-28 h-8 transition-colors duration-200 delay-100 transform skew-x-[35deg] bg-amber-300/90 group-hover:bg-amber-500/90 z-20"></div>
+                            <div class="w-28 h-8 transition-colors duration-200 delay-150 transform skew-x-[35deg] bg-amber-200/90 group-hover:bg-amber-400/90 z-30"></div>
+                            <div class="w-28 h-8 transition-colors duration-200 delay-200 transform skew-x-[35deg] bg-amber-100/90 group-hover:bg-amber-300/90 z-40"></div>
+                            <div class="w-28 h-8 transition-colors duration-200 delay-300 transform skew-x-[35deg] bg-amber-50/90 group-hover:bg-amber-200/90 z-50"></div>
+                        </div>
+                    </div> */}
             </div>
         </div>
+
+        // </div>
 
 
     );

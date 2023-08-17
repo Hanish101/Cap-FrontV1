@@ -12,23 +12,33 @@ export default function CompCards({handleBusDetails, filter}) {
     fetchBusinessData();
   }, [filter]);
 
+  
+
   const fetchBusinessData = () => {
-    fetch(`${API_LINK}/api/business/${filter}`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(filter, data.data);
-        setCompanyData(data.data);
-      })
-      .catch((error) => console.log(error));
+    if(filter){
+      fetch(`${API_LINK}/api/company/${filter}`)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(filter, data.data);
+          setCompanyData(data.data);
+        })
+        .catch((error) => console.log(error));
+    }
+    else{
+      fetch(`${API_LINK}/api/business`)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(filter, data.data);
+          setCompanyData(data.data);
+        })
+        .catch((error) => console.log(error));
+    }
   };
 
   return (
     <>
-      <h1 className="text-3xl">
-        Businesses
-      </h1>
-      <div className='h-full flex flex-wrap justify-center p-4 item-top'>
-        {companyData.slice(0, 6).map((companyData, index) => (
+      <div className='h-[800px] max-w-[1600px] flex flex-wrap flex-cols-4 justify-between gap-y-10 mx-8 pt-10 item-top overflow-y-scroll'>
+        {companyData.map((companyData, index) => (
           <CompanyCardData key={index} companyData={companyData} handleBusDetails={handleBusDetails}/>
         ))}
       </div>

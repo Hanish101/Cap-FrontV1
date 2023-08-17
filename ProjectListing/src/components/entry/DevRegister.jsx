@@ -73,13 +73,7 @@ export default function DevRegister() {
 
         formData.append('image', file)
 
-        const jsonPayload = JSON.stringify(Object.fromEntries(formData));
-
-        console.log('JSON payload:', jsonPayload);
-
         formData.set('price', price)
-
-        console.log(selectedSkills)
 
         const token = localStorage.getItem('accessToken')
 
@@ -89,7 +83,6 @@ export default function DevRegister() {
             body: formData,
             headers: {
                 'Authorization': `Bearer ${token}`,
-                // 'Content-Type': 'application/json',
             },
         })
             .then((response) => {
@@ -102,14 +95,13 @@ export default function DevRegister() {
                 if (data.message) {
                     toast(data.message)
                 }
-                if(data.id){
-                    navigate('/dashboard')
+                if(data.data.id){
                     localStorage.setItem('userID', data.data.id);
-
                 }
+                navigate('/dashboard')
             })
             .catch((err) => {
-                console.log("__error__", err)
+                toast("__error__", err)
             })
 
 
@@ -134,6 +126,7 @@ export default function DevRegister() {
                             id="image"
                             onChange={(e) => setFile(e.target.files[0])}
                             className="w-full px-4 py-2 rounded border-2 border-gray-500 focus:border-secondary focus:outline-none"
+                            required
                         />
                     </div>
 
@@ -147,6 +140,7 @@ export default function DevRegister() {
                             value={devFName}
                             onChange={(e) => setDevFName(e.target.value)}
                             className="w-full px-4 py-2 rounded border-2 border-gray-500 focus:border-secondary focus:outline-none"
+                            required
                         />
                     </div>
                     <div className="mb-4">
@@ -159,6 +153,7 @@ export default function DevRegister() {
                             value={devLName}
                             onChange={(e) => setDevLName(e.target.value)}
                             className="w-full px-4 py-2 rounded border-2 border-gray-500 focus:border-secondary focus:outline-none"
+                            required
                         />
                     </div>
                     <div className="mb-4">
@@ -171,6 +166,7 @@ export default function DevRegister() {
                             value={price}
                             onChange={(e) => setPrice(e.target.value)}
                             className="w-full px-4 py-2 rounded border-2 border-gray-500 focus:border-secondary focus:outline-none"
+                            required
                         />
                     </div>
 

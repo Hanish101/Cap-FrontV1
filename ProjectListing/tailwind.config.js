@@ -30,6 +30,15 @@ export default {
           dark: '#009900',
           light: '#99FF99',
         },
+        navbar: {
+          DEFAULT: '#F3F0D7',
+        },
+        navtext: {
+          DEFAULT: '#386641',
+        },
+        borcol: {
+          gre: '#386641'
+        },
         'backblack': '#050515', //Color for Navbar, Footer, and Headerblackwhite
         'backwhite': '#eeeeef', // Color for Home div background
         'whitetext': '#fdfdfc', // Color for text Navbar, Footer, and Header

@@ -18,13 +18,22 @@
         "colId": "history",
         "containerId": "",
         "name": "https://build-b84g.onrender.com/user/signin",
-        "url": "https://build-b84g.onrender.com/user/signin",
-        "method": "GET",
+        "url": "https://build-b84g.onrender.com/u/api/rateorg/7fcd5936-1668-422b-8514-424149f1670c",
+        "method": "PATCH",
         "sortNum": 0,
         "created": "2023-07-17T10:51:34.717Z",
-        "modified": "2023-07-18T15:09:09.914Z",
+        "modified": "2023-08-16T17:27:12.202Z",
         "headers": [],
         "params": [],
+        "body": {
+            "type": "json",
+            "raw": "{\n\"rating\": 5,\n\"testimonial\" : \"good company\"\n}\n",
+            "form": []
+        },
+        "auth": {
+            "type": "bearer",
+            "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFiMjc5N2E5LWI2ODctNDdmMy05NDE2LThhNDllZmM3ODFjZSIsInVzZXJuYW1lIjoiaGFueWEiLCJpYXQiOjE2OTIyMDUzOTZ9.IwKdvDZDuHoV4drTII2aOPls1oDoZ3bC7ex_CkXfNLk"
+        },
         "tests": []
     },
     {
@@ -32,19 +41,13 @@
         "colId": "history",
         "containerId": "",
         "name": "https://build-b84g.onrender.com/user/signin",
-        "url": "https://build-b84g.onrender.com/api/business?price=auygyt",
+        "url": "https://build-b84g.onrender.com/api/business/",
         "method": "GET",
         "sortNum": 0,
         "created": "2023-07-17T10:51:41.208Z",
-        "modified": "2023-07-18T18:37:00.622Z",
+        "modified": "2023-08-17T07:53:44.992Z",
         "headers": [],
-        "params": [
-            {
-                "name": "price",
-                "value": "auygyt",
-                "isPath": false
-            }
-        ],
+        "params": [],
         "tests": []
     },
     {

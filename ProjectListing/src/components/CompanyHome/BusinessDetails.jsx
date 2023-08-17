@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
 import { API_LINK } from '../../../constants';
 
-import ProjectCard from '../cards/ProjectCard';
 import ProjectCardData from '../cards/ProjectCardData';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function BusinessDetails({ id, company_name, Projects, location, industry, description, present, createdAt, updatedAt, handleProjectClicked }) {
+export default function BusinessDetails({ id, company_name, logoUrl, Projects, location, industry, description, present, createdAt, updatedAt, handleProjectClicked }) {
     const [showModal, setShowModal] = useState(false);
+
+    const dateFormat = (formdate) => {
+        console.log("___date___", formdate)
+        const date = new Date(formdate);
+        return date.toLocaleDateString("en-US", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+        });
+    }
 
     const openModal = () => {
         setShowModal(true);
@@ -30,21 +39,21 @@ export default function BusinessDetails({ id, company_name, Projects, location, 
     };
 
     const skillsData = [
-        ['javascript','JavaScript'],
-        ['python','Python'],
-        ['java','Java'],
-        ['html','HTML'],
-        ['css','CSS'],
-        ['react','React.js'],
-        ['node','Node.js'],
-        ['docker','Docker'],
-        ['mongodb','MongoDB'],
-        ['uiux','UI/UX'],
-        ['sql','SQL'],
-        ['git','Git'],
-        ['agile','Agile'],
-        ['aws','AWS'],
-        ['testing','Testing'],
+        ['javascript', 'JavaScript'],
+        ['python', 'Python'],
+        ['java', 'Java'],
+        ['html', 'HTML'],
+        ['css', 'CSS'],
+        ['react', 'React.js'],
+        ['node', 'Node.js'],
+        ['docker', 'Docker'],
+        ['mongodb', 'MongoDB'],
+        ['uiux', 'UI/UX'],
+        ['sql', 'SQL'],
+        ['git', 'Git'],
+        ['agile', 'Agile'],
+        ['aws', 'AWS'],
+        ['testing', 'Testing'],
     ];
 
     // Project creation
@@ -90,7 +99,9 @@ export default function BusinessDetails({ id, company_name, Projects, location, 
             }
         })
             .then((response) => response.json())
-            .then((data) => console.log(data))
+            .then((data) => {
+                toast("Business details updates")
+            })
             .catch((err) => toast(err))
 
         closeModal();
@@ -127,6 +138,8 @@ export default function BusinessDetails({ id, company_name, Projects, location, 
                     if (data.message) {
                         toast(data.message)
                     }
+                    toast('Business details updated')
+                    setShowUpdateModal(false);
                     console.log("___update___", data.data)
                 })
                 .catch((err) => toast(err))
@@ -151,8 +164,9 @@ export default function BusinessDetails({ id, company_name, Projects, location, 
                 .then((response) => response.json())
                 .then((data) => {
                     if (data.message) {
-                        toast(data.message)
+                        toast("Business deleted")
                     }
+                    toast("Business deleted")
                     console.log("___delete___", data.message)
                 })
                 .catch((err) => toast(err))
@@ -165,22 +179,24 @@ export default function BusinessDetails({ id, company_name, Projects, location, 
 
 
     return (
-        <div className='w-full flex flex-col'>
+        <div className='w-full flex flex-col '>
             <ToastContainer />
             <div className="relative w-auto rounded-lg shadow-lg">
-                <div className="bg-gray-100 p-4">
-                    <h2 className="text-3xl font-bold mb-4">{company_name}</h2>
-                    <div className="flex justify-between items-center mb-2">
-                        <p className="text-xl">Location: {location}</p>
-                        <p className="text-xl">Industry: {industry}</p>
+                <div className="p-4">
+                    <h2 className="text-4xl font-bold mb-4 text-center">{company_name}</h2>
+                    <div className="flex flex-row justify-between items-start">
+                        <div>
+                            <p className="text-2xl mb-4">Location: {location}</p>
+                            <p className="text-2xl mb-4">Industry: {industry}</p>
+                            <p className="text-xl mb-2">{description}</p>
+                        </div>
+                        <img src={logoUrl} alt="Company Logo" className="w-40 h-40 rounded-full mr-4" />
                     </div>
-                    <p className="text-lg mb-2">{description}</p>
                 </div>
-                <div className="bg-gray-200 text-sm px-4 py-2 flex justify-between">
+                <div className="text-base px-4 py-2 flex justify-between">
                     <div>
-                        <p className="mb-1">{present ? "Present" : "Not Present"}</p>
-                        <p className="text-xs text-gray-500">Created: {createdAt}</p>
-                        <p className="text-xs text-gray-500">Updated: {updatedAt}</p>
+                        <p className="text-sm text-gray-500">Created: {dateFormat(createdAt)}</p>
+                        <p className="text-sm text-gray-500">Updated: {dateFormat(updatedAt)}</p>
                     </div>
                     <div>
                         <button className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg mr-2" onClick={() => openUpdateModal()}>Update</button>
@@ -189,15 +205,19 @@ export default function BusinessDetails({ id, company_name, Projects, location, 
                 </div>
             </div>
 
-            <div className='bg-blue-200 flex-1 grid grid-cols-4 gap-4 justify-end'>
-
-                <div className='w-[300px] h-[350px] bg-blue-300 mt-4 ml-4 rounded-2xl' onClick={openModal}>
-                    ADD PROJECT
+            <div className='bg-navbar h-full'>
+                <div className='flex justify-end '>
+                    <button className='bg-secondary text-white py-2 mr-6 mt-6 w-40 text-lg font-bold rounded-lg' onClick={openModal}>
+                        ADD PROJECT
+                    </button>
                 </div>
-                {Projects.slice(0, 3).map((project, index) => (
-                    <ProjectCardData projectData={project} handleProDetails={() => handleProDetails(project)} key={project.id} />
-                ))}
+                <div className='flex-1 grid grid-cols-4 gap-4 justify-end mx-16'>
 
+                    {Projects.slice(0, 3).map((project, index) => (
+                        <ProjectCardData projectData={project} handleProDetails={() => handleProDetails(project)} key={project.id} />
+                    ))}
+
+                </div>
             </div>
 
             {showModal && (
@@ -323,7 +343,7 @@ export default function BusinessDetails({ id, company_name, Projects, location, 
                         <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                             <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                                 <div className="sm:flex sm:items-start">
-                                    <div className="mt-3 text-center sm:mt-0 sm:text-left">
+                                    <div className="mt-3 w-full text-center sm:mt-0 sm:text-left">
                                         <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">Add Project</h3>
                                         <form onSubmit={handleBusiness}>
                                             <div className="mb-4">
@@ -372,7 +392,7 @@ export default function BusinessDetails({ id, company_name, Projects, location, 
                                                 <textarea
                                                     id="description"
                                                     name="description"
-                                                    value={description}
+                                                    value={descriptionUpdate}
                                                     onChange={(e) => setDescriptionUpdate(e.target.value)}
                                                     className="w-full px-4 py-2 rounded border border-gray-300 focus:border-blue-500 focus:outline-none"
                                                     rows={4}

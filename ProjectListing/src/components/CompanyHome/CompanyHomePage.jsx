@@ -47,20 +47,14 @@ export default function CompanyHomePage() {
 
     return (
         <div className="flex h-screen">
-            <div className="flex-1 flex flex-col bg-blue-400">
+            <div className="flex-1 flex flex-col">
                 <CompanyNavbar activePage={activePage} onPageChange={handlePageChange} />
                 <div className="flex-1 flex">
-                    <div className="w-[350px] h-[900px] rounded-b-xl p-8 flex flex-col ">
-                        {/* {activeFilter} */}
-                    </div>
-                    <div className="flex-1 flex flex-row w-full m-4 pt-1">
-                        {/* <DevloperViewCompany/> */}
-                        {/* <DevloperDetails devData={devData}/> */}
-                        {/* <DevloperDetails devID="02dd2014-faa4-48f4-aa24-80279970c87a"/> */}
+                    {/* <div className="w-[350px] h-[900px] rounded-b-xl p-8 flex flex-col ">
+                    
+                    </div> */}
+                    <div className="flex-1 flex flex-row w-full pt-1">
                         {activeCard}
-                        {/* <CompanyDetails handleBusinessClicked={handleBusinessClicked}/> */}
-                        {/* <BusinessDetails {...companyData} /> */}
-                        {/* <Projectdetails projectData={projectData} /> */}
                     </div>
                 </div>
             </div>

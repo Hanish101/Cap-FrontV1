@@ -11,9 +11,9 @@ export default function DevFilter({ handleFilterSelect }) {
 
     return (
         <div>
-            <div className='text-lg'>Sort</div>
-            <div className='text-md'>by date</div>
-            <div key='sort=asc'>
+            <div className='text-3xl'>Sort</div>
+            <div className='text-xl'>by date</div>
+            <div className='text-xl mt-2' key='sort=asc'>
                 <input
                     type="radio"
                     id='sort=asc'
@@ -24,7 +24,7 @@ export default function DevFilter({ handleFilterSelect }) {
                 />
                 <label htmlFor='sort=asc'>Low to High</label>
             </div>
-            <div key='sort=desc'>
+            <div className='text-xl mt-2' key='sort=desc'>
                 <input
                     type="radio"
                     id='sort=desc'
@@ -35,7 +35,7 @@ export default function DevFilter({ handleFilterSelect }) {
                 />
                 <label htmlFor='sort=desc'>High to Low</label>
             </div>
-            <div key='none'>
+            <div className='text-xl mt-2' key='none'>
                 <input
                     type="radio"
                     id='filternone'
@@ -46,7 +46,7 @@ export default function DevFilter({ handleFilterSelect }) {
                 />
                 <label htmlFor='filternone'>none</label>
             </div>
-            <p>Selected Skill: {selectedSkill}</p>
+            {/* <p>Selected Skill: {selectedSkill}</p> */}
         </div>
     );
 }

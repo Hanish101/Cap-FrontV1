@@ -35,9 +35,6 @@ export default function ChooseUser() {
                     <div className='flex justify-between'>
                         <div>
                             Sign up as a Developer
-                            <div className='text-sm'>
-                                Something to say...
-                            </div>
                         </div>
                         <div className='grid content-center'>
                             <div className={`${chooseUser === 1 ? 'bg-secondary' : 'border-2 border-gray-500'} h-4 w-4 rounded-full grow-0`}></div>
@@ -48,9 +45,6 @@ export default function ChooseUser() {
                     <div className='flex justify-between'>
                         <div>
                             Sign up as an Organisation
-                            <div className='text-sm'>
-                                Something to say...
-                            </div>
                         </div>
                         <div className='grid content-center'>
                             <div className={`${chooseUser === 2 ? 'bg-secondary' : 'border-2 border-gray-500'} h-4 w-4 rounded-full grow-0`}></div>

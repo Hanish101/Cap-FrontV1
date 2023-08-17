@@ -13,9 +13,14 @@ import LandingPage from './components/landingPage/LandingPage'
 import Dashboard from './components/dashboard/Dashboard'
 import CompanyHomePage from './components/CompanyHome/CompanyHomePage'
 
+
 function App() {
 
   const isAuthenticated = (localStorage.getItem('accessToken') !== null)
+
+  function isAuth() {
+    return localStorage.getItem('accessToken') ? true : false
+  }
 
   return (
     <BrowserRouter>
@@ -28,19 +33,10 @@ function App() {
       />
         <Route
         path="/companyhome"
-        element={isAuthenticated ? <CompanyHomePage /> : <Navigate to='/entry' replace/>}
+        element={isAuthenticated? <CompanyHomePage /> : <Navigate to='/entry' replace/>}
       />
       </Routes>
     </BrowserRouter>
-
-    // <div className='app'>
-    //   {/* <Header/>
-    //   <ProxyContent/>
-    //   <Footer/> */}
-    //   {/* <EntryMain/> */}
-    //   {/* <SkillList/> */}
-    //   <DevComp/>
-    // </div>
   )
 }
 

@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { API_LINK } from '../../../constants';
+import { useNavigate } from 'react-router-dom';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function NavBar({ activePage, onPageChange }) {
+
+    const navigate = useNavigate()
 
     const [userData, setUserData] = useState('')
     const [devFName, setDevFName] = useState('');
@@ -120,30 +123,38 @@ export default function NavBar({ activePage, onPageChange }) {
         }
     }
 
+    const logoutFunction = () => {
+        localStorage.removeItem('accessToken')
+        localStorage.removeItem('accessTokenCreationDate')
+        localStorage.removeItem('userID')
+        navigate('/')
+
+    }
+
 
 
     return (
 
-        <nav className='w-full bg-black h-[80px]'>
+        <nav className='w-full bg-navbar h-[80px]'>
             <ToastContainer />
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="w-full px-4 sm:px-6 lg:px-8 lg:pl-20">
                 <div className="flex items-center justify-between h-16">
                     <div className="flex items-center">
                         <div className="flex-shrink-0">
-                            <span className="text-white font-semibold text-3xl">Logo</span>
+                        <span className="flex-1 text-center text-4xl font-semibold text-navtext hidden md:block">SkillHub</span>
                         </div>
                     </div>
                     <div className="hidden sm:block">
-                        <div className="flex space-x-4 border-black">
-                            <div className={`flex-auto py-1 px-4 text-white font-semibold text-lg border-b-2 hover:border-white ${activePage === 'projects' ? 'text-white border-white' : 'border-black'}`}
+                        <div className="flex space-x-4 border-[gray]">
+                            <div className={`flex-auto py-1 px-4 text-navtext font-semibold text-lg border-b-2 hover:border-navtext ${activePage === 'projects' ? 'text-navtext border-navtext' : 'border-navbar'}`}
                                 onClick={() => onPageChange('projects')}>
                                 Project
                             </div>
-                            <div className={`flex-auto py-1 px-4 text-white font-semibold text-lg border-b-2 hover:border-white ${activePage === 'companies' ? 'text-white border-white' : 'border-black'}`}
+                            <div className={`flex-auto py-1 px-4 text-navtext font-semibold text-lg border-b-2 hover:border-navtext ${activePage === 'companies' ? 'text-navtext border-navtext' : 'border-navbar'}`}
                                 onClick={() => onPageChange('companies')}>
-                                Company
+                                Business
                             </div>
-                            <div className={`flex-auto py-1 px-4 text-white font-semibold text-lg border-b-2 hover:border-white ${activePage === 'developers' ? 'text-white border-white' : 'border-black'}`}
+                            <div className={`flex-auto py-1 px-4 text-navtext font-semibold text-lg border-b-2 hover:border-navtext ${activePage === 'developers' ? 'text-navtext border-navtext' : 'border-navbar'}`}
                                 onClick={() => onPageChange('developers')}>
                                 Developers
                             </div>
@@ -155,12 +166,15 @@ export default function NavBar({ activePage, onPageChange }) {
                             <div className="flex items-center justify-center rounded-full bg-white h-8 w-8"></div>
                         ) : (
                             <>
-                                <div className='flex items-center' onClick={openModal}>
-                                    <div className="flex items-center justify-center rounded-full bg-white h-8 w-8">
-                                        <span className="text-gray-800">{userData.dev_first_name[0].toUpperCase()}</span>
+                                <div className='flex items-center'>
+                                    <div className="flex items-center justify-center rounded-full bg-navtext h-8 w-8">
+                                        <span className=" text-white text-lg font-semibold">{userData.dev_first_name[0].toUpperCase()}</span>
                                     </div>
-                                    <span className="text-white ml-2">{userData.dev_first_name} {userData.dev_last_name}</span>
+                                    <span className="text-navtext ml-2 text-lg font-semibold">{userData.dev_first_name} {userData.dev_last_name}</span>
+                                    <button className='bg-white px-2 py-1 rounded-lg bg-green-500 font-semibold text-white mx-6' onClick={openModal}>Update</button>
+                                    <button className='bg-white px-2 py-1 rounded-lg bg-red-700 font-semibold text-white' onClick={logoutFunction}>Log out</button>
                                 </div>
+                                
                             </>
                         )
                         }

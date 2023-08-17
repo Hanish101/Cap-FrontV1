@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400&family=Pacifico&display=swap');
+
+:root{
+  font-family: 'Oxygen', sans-serif;
+  /* font-family: 'Pacifico'; */
+}
+
 .app{
   min-height: 100vh;
   background-color: coral;
@@ -14,15 +21,19 @@
 
 .landing-page{
   min-height: 60vh;
-  margin: 0 15vw;
 }
 
 
 
 /* Footer */
 
-.footer-main{
-  margin: 0 15vw;
+@media (min-width: 768px) {
+  .footer-main {
+    padding: 0 15vw;
+  }
+  .landing-page{
+    margin: 0 15vw;
+  }
 }
 
 
