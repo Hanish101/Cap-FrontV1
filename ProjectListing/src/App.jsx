@@ -12,6 +12,7 @@ import EntryMain from './components/entry/EntryMain'
 import LandingPage from './components/landingPage/LandingPage'
 import Dashboard from './components/dashboard/Dashboard'
 import CompanyHomePage from './components/CompanyHome/CompanyHomePage'
+import LandingPageNew from './components/LandingPageNew/LandingPageNew'
 
 
 function App() {
@@ -25,15 +26,18 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<LandingPage/>} />
+        {/* <Route exact path="/" element={<LandingPage/>} /> */}
+        <Route exact path="/" element={<LandingPageNew/>} />
         <Route path="/entry/*" element={<EntryMain/>} />
         <Route
         path="/dashboard"
-        element={isAuthenticated ? <Dashboard /> : <Navigate to='/entry' replace/>}
+        // element={isAuthenticated ? <Dashboard /> : <Navigate to='/entry' replace/>}
+        element = {<Dashboard/>}
       />
         <Route
         path="/companyhome"
-        element={isAuthenticated? <CompanyHomePage /> : <Navigate to='/entry' replace/>}
+        // element={isAuthenticated? <CompanyHomePage /> : <Navigate to='/entry' replace/>}
+        element={<CompanyHomePage />}
       />
       </Routes>
     </BrowserRouter>

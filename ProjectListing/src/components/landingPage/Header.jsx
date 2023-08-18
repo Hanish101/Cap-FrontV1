@@ -5,7 +5,7 @@ export default function Header() {
     return (
         <div className='header-main flex justify-between items-center border-b-2 border-black bg-backblack'>
             <div className="flex-1 block flex justify-center md:hidden">
-                // <img className='w-40' src='../../../public/static/images/SkillHub-opaque.png'/>
+                <img className='w-40' src='../../../public/static/images/SkillHub-opaque.png'/>
             </div>
             <div className="flex-1 text-center text-4xl font-semibold text-white hidden md:block">
                 <img className='w-80' src='../../../public/static/images/SkillHub-opaque.png'/>

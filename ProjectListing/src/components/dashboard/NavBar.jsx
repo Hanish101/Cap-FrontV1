@@ -171,8 +171,8 @@ export default function NavBar({ activePage, onPageChange }) {
                                         <span className=" text-white text-lg font-semibold">{userData.dev_first_name[0].toUpperCase()}</span>
                                     </div>
                                     <span className="text-navtext ml-2 text-lg font-semibold">{userData.dev_first_name} {userData.dev_last_name}</span>
-                                    <button className='bg-white px-2 py-1 rounded-lg bg-green-500 font-semibold text-white mx-6' onClick={openModal}>Update</button>
-                                    <button className='bg-white px-2 py-1 rounded-lg bg-red-700 font-semibold text-white' onClick={logoutFunction}>Log out</button>
+                                    <button className='bg-white px-2 py-1 rounded-lg bg-secondary-dark font-semibold text-white mx-6' onClick={openModal}>Update</button>
+                                    <button className='bg-white px-2 py-1 rounded-lg bg-primary-dark font-semibold text-white' onClick={logoutFunction}>Log out</button>
                                 </div>
                                 
                             </>

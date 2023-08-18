@@ -80,7 +80,7 @@ export default function DevloperDetailedCard({ devData }) {
           <div className="flex flex-wrap">
             {devData.skills && devData.skills.length > 0 ? (
               devData.skills.map((skill, index) => (
-                <button key={index} className="bg-blue-300 text-blue-800 py-1 px-3 rounded-lg text-md mr-2 mb-2">
+                <button key={index} className="bg-gray-300 py-1 px-3 rounded-lg text-md mr-2 mb-2">
                   {skill}
                 </button>
               ))

@@ -6,41 +6,7 @@ export default function DevloperCardData({ devData, handleDevDetails }) {
         handleDevDetails({ devData });
         console.log("clickes")
     }
-
-
-    const getRandomColorIndex = () => {
-        return Math.floor(Math.random() * Object.keys(colors).length);
-    };
-
-    const truncate = (str, max) => {
-        return str.length > max ? str.slice(0, max) + '...' : str;
-      };
-
-
-
-    // Custom colors from your Tailwind CSS configuration
-    const colors = {
-        cardorange: '#FFD0B0',
-        cardpurple: '#D5C4F7',
-        cardgreen: '#A8E3D8',
-        cardblue: '#B0E8FF',
-        cardyellow: '#FFDDA0',
-        cdb4db: '#cdb4db',
-        ffc8dd: '#ffc8dd',
-        ffafcc: '#ffafcc',
-        a2d2ff: '#a2d2ff',
-        bde0fe: '#bde0fe',
-        b8e0d2: '#b8e0d2',
-        a539ad9: '#539ad9',
-        f79d65: '#f79d65',
-        f25c54: '#f25c54',
-    };
-
-
-    const randomColor = getRandomColorIndex();
-
-
-
+    
     return (
 
         <div className="relative w-full group max-w-md min-w-0 mx-auto mt-6 mb-6 break-words bg-white border shadow-2xl dark:bg-gray-700 dark:border-gray-700 md:max-w-sm rounded-xl"
@@ -55,7 +21,6 @@ export default function DevloperCardData({ devData, handleDevDetails }) {
                     <div className="m-6 whitespace-nowrap mb-1 text-2xl font-bold leading-normal text-white">{devData.dev_first_name} {devData.dev_last_name}</div>
                 </div>
                 <div className="mt-20 ">
-
                         <div className="flex flex-wrap justify-center gap-2">
                             {devData.skills.slice(0, 4).map((skill, index) => (
                                 <span
@@ -65,15 +30,14 @@ export default function DevloperCardData({ devData, handleDevDetails }) {
                                     {skill}
                                 </span>
                             ))}
-                        {/* </div> */}
                     </div>
 
                 </div>
                 <div className='text-white text-center pt-6'>price ${devData.price}/hr</div>
-                <div class="pt-6 mx-6 mt-6 text-center border-t border-gray-200 dark:border-gray-700/50">
-                    <div class="flex flex-wrap justify-center">
-                        <div class="w-full px-6">
-                            <p class="mb-4 font-light leading-relaxed text-white">
+                <div className="pt-6 mx-6 mt-6 text-center border-t border-gray-200 dark:border-gray-700/50">
+                    <div className="flex flex-wrap justify-center">
+                        <div className="w-full px-6">
+                            <p className="mb-4 font-light leading-relaxed text-white">
                                 {devData.background}
                             </p>
                         </div>

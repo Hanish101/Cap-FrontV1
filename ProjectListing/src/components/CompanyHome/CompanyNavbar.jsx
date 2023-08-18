@@ -38,7 +38,7 @@ export default function CompanyNavbar({ activePage, onPageChange }) {
                         </div>
                     </div>
                     <div className="hidden sm:flex items-center">
-                        <button className='bg-red-500  text-white font-semibold px-2 py-1 rounded-lg mx-6' onClick={logoutFunction}>Log out</button>
+                        <button className='bg-primary text-white font-semibold px-2 py-1 rounded-lg mx-6' onClick={logoutFunction}>Log out</button>
                     </div>
                 </div>
             </div>

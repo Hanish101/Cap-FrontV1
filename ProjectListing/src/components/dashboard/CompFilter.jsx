@@ -21,6 +21,7 @@ export default function DevFilter({ handleFilterSelect }) {
                     value="sort=asc"
                     checked={selectedSkill === "sort=asc"}
                     onChange={handleSkillChange}
+                    className='mr-4'
                 />
                 <label htmlFor='sort=asc'>Low to High</label>
             </div>
@@ -32,6 +33,7 @@ export default function DevFilter({ handleFilterSelect }) {
                     value="sort=desc"
                     checked={selectedSkill === "sort=desc"}
                     onChange={handleSkillChange}
+                    className='mr-4'
                 />
                 <label htmlFor='sort=desc'>High to Low</label>
             </div>
@@ -43,8 +45,9 @@ export default function DevFilter({ handleFilterSelect }) {
                     value=""
                     checked={selectedSkill === ""}
                     onChange={handleSkillChange}
+                    className='mr-4'
                 />
-                <label htmlFor='filternone'>none</label>
+                <label htmlFor='filternone'>Clear</label>
             </div>
             {/* <p>Selected Skill: {selectedSkill}</p> */}
         </div>
